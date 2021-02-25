@@ -1,9 +1,13 @@
-import { ADD_TODO } from "../actions/todoActions";
+import {
+  ADD_TODO,
+  TOGGLE_COMPLETED,
+  CLEAR_COMPLETED,
+} from "../actions/todoActions";
 
 export const initialValues = {
   item: "Learn about reducers",
   completed: false,
-  id: 1,
+  id: new Date(),
 };
 
 const todoReducer = (state, action) => {
@@ -15,6 +19,17 @@ const todoReducer = (state, action) => {
         completed: false,
         id: new Date(),
       };
+    case TOGGLE_COMPLETED:
+      console.log("completed Toggled");
+      return {
+        ...state,
+        completed: !state.completed,
+      };
+    case CLEAR_COMPLETED:
+      console.log("cleared todo");
+      return {};
+    default:
+      return state;
   }
 };
 export default todoReducer;

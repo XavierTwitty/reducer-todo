@@ -7,7 +7,7 @@ console.log(initialValues);
 
 const Todo = () => {
   const [state, dispatch] = useReducer(todoReducer, initialValues);
-
+  const [newTodoItem, setTodoItem] = useState("");
   return (
     <form>
       <h1> {initialValues.item} </h1>
