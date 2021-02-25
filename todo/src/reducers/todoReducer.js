@@ -4,11 +4,9 @@ import {
   CLEAR_COMPLETED,
 } from "../actions/todoActions";
 
-export const initialValues = {
-  item: "Learn about reducers",
-  completed: false,
-  id: new Date(),
-};
+export const initialValues = [
+  { item: "Learn about reducers", completed: false, id: new Date() },
+];
 
 const todoReducer = (state, action) => {
   switch (action.type) {
@@ -20,14 +18,14 @@ const todoReducer = (state, action) => {
         id: new Date(),
       };
     case TOGGLE_COMPLETED:
-      console.log("completed Toggled");
+      //   console.log("completed Toggled");
       return {
         ...state,
         completed: !state.completed,
       };
-    case CLEAR_COMPLETED:
-      console.log("cleared todo");
-      return {};
+    // case CLEAR_COMPLETED:
+    //   console.log("cleared todo");
+    //   return {...state, state.filter( bool => bool.completed === true  )};
     default:
       return state;
   }
