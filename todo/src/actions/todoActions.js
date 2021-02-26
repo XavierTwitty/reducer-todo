@@ -7,9 +7,9 @@ export default {
     console.log("adding a todo to list");
     return { type: ADD_TODO, payload: todo };
   },
-  toggleCompleted: () => {
+  toggleCompleted: (todo) => {
     console.log("toggling todo list ");
-    return { type: TOGGLE_COMPLETED };
+    return { type: TOGGLE_COMPLETED, payload: todo.id };
   },
   clearCompleted: () => {
     console.log("clearing todo to list");

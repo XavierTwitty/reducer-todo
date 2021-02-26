@@ -11,22 +11,45 @@ const Todo = () => {
   const handleChange = (e) => {
     setTodoItem(e.target.value);
   };
-  console.log("current state", state.completed);
+  const handleDispatch = (e, action) => {
+    e.preventDefault();
+    dispatch(action);
+  };
+
   return (
-    <form>
-      <h1 onClick={() => dispatch(actions.toggleCompleted())}>
-        {" "}
-        {state.item}{" "}
-      </h1>
-      <input
-        type="text"
-        name="newTodoItem"
-        value={newTodoItem}
-        onChange={handleChange}
-      />
-      <button onClick={() => dispatch(actions.addTodo())}> add </button>{" "}
-      <button onClick={() => dispatch(actions.clearCompleted())}> clear</button>
-    </form>
+    <div>
+      <form>
+        <input
+          type="text"
+          name="newTodoItem"
+          value={newTodoItem}
+          onChange={handleChange}
+        />
+        <button
+          onClick={(e) => handleDispatch(e, actions.addTodo(newTodoItem))}
+        >
+          {" "}
+          add{" "}
+        </button>{" "}
+        <button onClick={(e) => handleDispatch(e, actions.clearCompleted())}>
+          {" "}
+          clear
+        </button>
+      </form>
+
+      {state.map((todo) => {
+        return (
+          <h1
+            onClick={() => dispatch(actions.toggleCompleted(todo))}
+            key={todo.id}
+          >
+            {" "}
+            {todo.item}{" "}
+          </h1>
+        );
+      })}
+      {/* c*/}
+    </div>
   );
 };
 export default Todo;
